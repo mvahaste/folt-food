@@ -8,7 +8,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -28,8 +27,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _index = 0;
+
+  final List<Widget> _screens = const [
+    Placeholder(),
+    Placeholder(),
+    Placeholder(),
+    Placeholder(),
+    Placeholder(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +55,12 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         fixedColor: Colors.black,
         unselectedItemColor: Colors.black,
+        currentIndex: _index,
+        onTap: (index) {
+          setState(() {
+            _index = index;
+          });
+        },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
@@ -53,7 +73,7 @@ class HomePage extends StatelessWidget {
             label: 'Groceries',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.search_rounded),
             label: 'Search',
           ),
           BottomNavigationBarItem(
@@ -93,9 +113,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: const Center(
-        child: Text('Hello World'),
-      ),
+      body: _screens[_index],
     );
   }
 }
