@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_delivery_app/widgets/app_bar.dart';
+import 'package:food_delivery_app/widgets/bottom_navigation_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +22,34 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          brightness: Brightness.light,
+          seedColor: Colors.indigo,
+          background: Colors.white,
+          surface: Colors.white,
+          primary: Colors.black,
+          secondary: Colors.black,
+        ),
+        useMaterial3: true,
       ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          brightness: Brightness.dark,
+          seedColor: Colors.indigo,
+          background: Colors.black,
+          surface: Colors.black,
+          primary: Colors.white,
+          secondary: Colors.white,
+        ),
+        useMaterial3: true,
+      ).copyWith(
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          },
+        ),
+      ),
+      themeMode: ThemeMode.light,
       home: const HomePage(),
     );
   }
@@ -38,80 +66,26 @@ class _HomePageState extends State<HomePage> {
   int _index = 0;
 
   final List<Widget> _screens = const [
-    Placeholder(),
-    Placeholder(),
-    Placeholder(),
-    Placeholder(),
-    Placeholder(),
+    Center(child: Text('Home')),
+    Center(child: Text('Groceries')),
+    Center(child: Text('Search')),
+    Center(child: Text('Orders')),
+    Center(child: Text('Profile')),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        fixedColor: Colors.black,
-        unselectedItemColor: Colors.black,
-        currentIndex: _index,
-        onTap: (index) {
-          setState(() {
-            _index = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home_rounded),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            activeIcon: Icon(Icons.shopping_cart_rounded),
-            label: 'Groceries',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search_rounded),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_outlined),
-            activeIcon: Icon(Icons.receipt_rounded),
-            label: 'Orders',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outlined),
-            activeIcon: Icon(Icons.person_rounded),
-            label: 'Profile',
-          ),
-        ],
-      ),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: TextButton(
-          onPressed: () {},
-          child: Row(
-            children: const [
-              Icon(
-                Icons.location_on_outlined,
-                color: Colors.black,
-                size: 26,
-              ),
-              SizedBox(width: 10),
-              Text(
-                'Kaagvere 9',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-        ),
+      bottomNavigationBar: MyBottomNavigationBar(
+          onTap: (index) {
+            setState(() {
+              _index = index;
+            });
+          },
+          index: _index),
+      appBar: PreferredSize(
+        preferredSize: AppBar().preferredSize,
+        child: MyAppBar(onTap: () {}),
       ),
       body: _screens[_index],
     );
