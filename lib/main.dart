@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_delivery_app/screens/home.dart';
 import 'package:food_delivery_app/widgets/app_bar.dart';
 import 'package:food_delivery_app/widgets/bottom_navigation_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +20,20 @@ class MyApp extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark,
       ),
     );
+
+    ThemeData _buildTheme(brightness) {
+      var baseTheme = ThemeData(brightness: brightness);
+
+      return baseTheme.copyWith(
+        textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          },
+        ),
+      );
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -31,6 +47,15 @@ class MyApp extends StatelessWidget {
           secondary: Colors.black,
         ),
         useMaterial3: true,
+      ).copyWith(
+        textTheme: GoogleFonts.poppinsTextTheme(
+            // Theme.of(context).textTheme.apply(fontSizeFactor: 1, fontSizeDelta: 0),
+            ),
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+          },
+        ),
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -43,6 +68,9 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ).copyWith(
+        textTheme: GoogleFonts.poppinsTextTheme(
+            // Theme.of(context).textTheme.apply(fontSizeFactor: 1, fontSizeDelta: 0),
+            ),
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
             TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
@@ -50,27 +78,27 @@ class MyApp extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.light,
-      home: const HomePage(),
+      home: const MainPage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainPageState extends State<MainPage> {
   int _index = 0;
 
-  final List<Widget> _screens = const [
-    Center(child: Text('Home')),
-    Center(child: Text('Groceries')),
-    Center(child: Text('Search')),
-    Center(child: Text('Orders')),
-    Center(child: Text('Profile')),
+  final List<Widget> _screens = [
+    const HomePage(),
+    const Center(child: Text('Groceries')),
+    const Center(child: Text('Search')),
+    const Center(child: Text('Orders')),
+    const Center(child: Text('Profile')),
   ];
 
   @override

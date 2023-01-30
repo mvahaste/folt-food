@@ -17,6 +17,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
       type: BottomNavigationBarType.fixed,
       showUnselectedLabels: false,
       currentIndex: widget._index,
+      selectedFontSize: 12,
       onTap: widget.onTap,
       items: const [
         BottomNavigationBarItem(

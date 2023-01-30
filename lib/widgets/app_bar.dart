@@ -13,14 +13,14 @@ class MyAppBar extends StatelessWidget {
         onPressed: onTap,
         icon: const Icon(
           Icons.location_on_outlined,
-          size: 26,
+          size: 24,
         ),
         label: Wrap(
           children: const [
             Text(
-              'Kaagvere 9',
+              'Kaagvere 8',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: FontWeight.w400,
               ),
             ),
