@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_delivery_app/screens/groceries.dart';
 import 'package:food_delivery_app/screens/home.dart';
 import 'package:food_delivery_app/screens/orders.dart';
@@ -28,6 +29,13 @@ class MyApp extends StatelessWidget {
         ),
       );
     }
+
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
