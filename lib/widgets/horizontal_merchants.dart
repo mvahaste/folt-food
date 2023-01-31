@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/models/merchant_model.dart';
 import 'package:food_delivery_app/data/merchants.dart';
 import 'package:food_delivery_app/widgets/merchant_card.dart';
 import 'package:food_delivery_app/extensions/list_extensions.dart';
@@ -49,7 +48,7 @@ class MyHorizontalMerchants extends StatelessWidget {
               child: Wrap(
                 direction: Axis.horizontal,
                 spacing: 15,
-                children: merchants.shuffleInline().take(4).map((merchant) => MyMerchantCard(merchant: merchant)).toList(),
+                children: merchants.shuffleInline().where((merchant) => merchant.type == 'restaurant').take(4).map((merchant) => MyMerchantCard(merchant: merchant)).toList(),
               ),
             ),
           ),

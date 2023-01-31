@@ -14,6 +14,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      elevation: 0,
       type: BottomNavigationBarType.fixed,
       currentIndex: widget._index,
       selectedFontSize: 12,

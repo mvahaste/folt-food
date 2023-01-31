@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/screens/groceries.dart';
 import 'package:food_delivery_app/screens/home.dart';
-import 'package:food_delivery_app/widgets/app_bar.dart';
+import 'package:food_delivery_app/screens/orders.dart';
+import 'package:food_delivery_app/screens/profile.dart';
+import 'package:food_delivery_app/screens/search.dart';
 import 'package:food_delivery_app/widgets/bottom_navigation_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Folt Food',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.light,
@@ -87,30 +90,24 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _screens = [
     const HomePage(),
-    const Center(child: Text('Groceries')),
-    const Center(child: Text('Search')),
-    const Center(child: Text('Orders')),
-    const Center(child: Text('Profile')),
+    const GroceriesPage(),
+    const SearchPage(),
+    const OrdersPage(),
+    const ProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: MyBottomNavigationBar(
-        onTap: (index) {
-          setState(() {
-            _index = index;
-          });
-        },
-        index: _index,
-      ),
-      body: NestedScrollView(
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (context, innerBoxIsScrolled) => [
-          MyAppBar(
-            onTap: () {},
-          ),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        bottomNavigationBar: MyBottomNavigationBar(
+          onTap: (index) {
+            setState(() {
+              _index = index;
+            });
+          },
+          index: _index,
+        ),
         body: _screens[_index],
       ),
     );

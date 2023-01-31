@@ -36,7 +36,7 @@ class MyVerticalMerchants extends StatelessWidget {
               child: Wrap(
                 direction: Axis.vertical,
                 spacing: 24,
-                children: merchants.map((merchant) => MyMerchantCardLarge(merchant: merchant)).toList(),
+                children: merchants.where((merchant) => merchant.type == 'restaurant').map((merchant) => MyMerchantCardLarge(merchant: merchant)).toList(),
               ),
             ),
           ),

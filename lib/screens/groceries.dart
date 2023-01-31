@@ -1,10 +1,27 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:food_delivery_app/widgets/app_bar.dart';
+import 'package:food_delivery_app/widgets/vertical_stores.dart';
 
-class Groceries extends StatelessWidget {
-  const Groceries({super.key});
+class GroceriesPage extends StatelessWidget {
+  const GroceriesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      bottomNavigationBar: NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          MyAppBar(
+            onTap: () {},
+          ),
+        ],
+        body: const SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 5),
+            child: MyVerticalStores(),
+          ),
+        ),
+      ),
+    );
   }
 }

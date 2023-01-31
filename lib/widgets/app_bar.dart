@@ -25,11 +25,13 @@ class MyAppBar extends StatelessWidget {
         label: Wrap(
           children: const [
             Text(
-              'Kaagvere 8',
+              'Kaagvere 9',
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w400,
               ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
             SizedBox(
               width: 5,

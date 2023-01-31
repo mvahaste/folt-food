@@ -26,9 +26,11 @@ class MyMerchantCardLarge extends StatelessWidget {
             height: 310 / 2.1,
             child: Stack(
               children: [
-                Positioned(
-                  child: MyCardPill(text: merchant.discount, color: Colors.red, scale: 1.1),
-                ),
+                merchant.hasDiscount
+                    ? Positioned(
+                        child: MyCardPill(text: merchant.discount, color: Colors.red, scale: 1.1),
+                      )
+                    : const SizedBox.shrink(),
                 Positioned(
                   bottom: 0,
                   right: 0,

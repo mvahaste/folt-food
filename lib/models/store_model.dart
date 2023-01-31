@@ -1,5 +1,4 @@
-class Merchant {
-  final String type;
+class Store {
   final String imageUrl;
   final String title;
   final String rating;
@@ -10,8 +9,7 @@ class Merchant {
   final String deliveryTime;
   final bool available;
 
-  Merchant({
-    required this.type,
+  Store({
     required this.imageUrl,
     required this.title,
     required this.rating,
