@@ -7,6 +7,7 @@ class Merchant {
   final String discount;
   final String discountedPrice;
   final String deliveryTime;
+  final bool available;
 
   Merchant({
     required this.imageUrl,
@@ -17,5 +18,6 @@ class Merchant {
     required this.discount,
     required this.discountedPrice,
     required this.deliveryTime,
+    required this.available,
   });
 }

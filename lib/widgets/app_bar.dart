@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({super.key, required this.onTap});
@@ -7,7 +8,10 @@ class MyAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+    return SliverAppBar(
+      systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: Colors.white),
+      scrolledUnderElevation: 0,
+      floating: true,
       elevation: 0,
       title: TextButton.icon(
         onPressed: onTap,

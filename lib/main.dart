@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:food_delivery_app/screens/home.dart';
 import 'package:food_delivery_app/widgets/app_bar.dart';
 import 'package:food_delivery_app/widgets/bottom_navigation_bar.dart';
@@ -14,13 +13,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-      ),
-    );
-
     ThemeData _buildTheme(brightness) {
       var baseTheme = ThemeData(brightness: brightness);
 
@@ -105,17 +97,22 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: MyBottomNavigationBar(
-          onTap: (index) {
-            setState(() {
-              _index = index;
-            });
-          },
-          index: _index),
-      appBar: PreferredSize(
-        preferredSize: AppBar().preferredSize,
-        child: MyAppBar(onTap: () {}),
+        onTap: (index) {
+          setState(() {
+            _index = index;
+          });
+        },
+        index: _index,
       ),
-      body: _screens[_index],
+      body: NestedScrollView(
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          MyAppBar(
+            onTap: () {},
+          ),
+        ],
+        body: _screens[_index],
+      ),
     );
   }
 }
