@@ -9,7 +9,10 @@ class MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: Colors.white),
+      systemOverlayStyle: const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.dark,
+      ),
       scrolledUnderElevation: 0,
       floating: true,
       elevation: 0,
